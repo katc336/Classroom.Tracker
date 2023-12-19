@@ -116,14 +116,14 @@ async function seed() {
             },
             include: { class: true }
         })
-        // const student6 = await prisma.student.create({
-        //     data: {
-        //         firstName: "Calvin",
-        //         lastName: "Haynes",
-        //         class: { connect: { id: class1.id } }
-        //     },
-        //     include: { class: true }
-        // })
+        const student6 = await prisma.student.create({
+            data: {
+                firstName: "Calvin",
+                lastName: "Haynes",
+                class: { connect: { id: class1.id } }
+            },
+            include: { class: true }
+        })
         const student7 = await prisma.student.create({
             data: {
                 firstName: "Kailin",
@@ -161,26 +161,6 @@ async function seed() {
                 firstName: "Maria",
                 lastName: "Reyes",
                 class: { connect: { id: class1.id } }
-            },
-            include: { class: true }
-        })
-        //<-------------------LESSON DATA------------------->
-        //Lessons for Art 7
-        const lesson1 = await prisma.lesson.create({
-            data: {
-                learningObjective: "Identify a variety of forms of art and design",
-                progress: 90,
-                class: { connect: { id: class1.id } },
-                students: {
-                    create: {
-                        data: {
-                            firstName: "Calvin",
-                            lastName: "Haynes",
-                            class: { connect: { id: class1.id } }
-                        },
-                        include: { firstName: true }
-                    },
-                },
             },
             include: { class: true }
         })
