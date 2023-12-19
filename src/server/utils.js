@@ -24,21 +24,14 @@ const authMiddleware = async (req, res, next) => {
         } catch (error) {
             next(error.message);
         }
-    } else {
-        next({
-            name: 'AuthorizationHeaderError',
-            message: `Authorization token must start with ${prefix}`,
-        });
     }
 };
-
 const requireUser = (req, res, next) => {
     if (!req.user) {
         res.status(401).send("Sorry, you need an account to do that.")
     }
     next();
 };
-
 const requireAdmin = (req, res, next) => {
     if (req.user?.isAdmin === true) {
         next();

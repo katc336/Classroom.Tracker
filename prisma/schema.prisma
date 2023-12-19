@@ -17,6 +17,7 @@ model Teacher {
   lastName  String
   email     String  @unique
   password  String
+  isAdmin   Boolean @default(false)
   classes   Class[]
 }
 

@@ -1,9 +1,8 @@
-require('dotenv').config();
 const express = require("express");
+require('dotenv').config();
 const morgan = require("morgan");
 
 const ViteExpress = require("vite-express");
-
 const app = express();
 const { authMiddleware } = require("./utils");
 
@@ -17,26 +16,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(authMiddleware);
 
 //Test Route
-app.get("/test", (req, res) => {
-  res.send("Time to get cooking!");
+app.get("/hello", (req, res) => {
+  res.send("Hello Vite + React!");
 });
 
 //Backend Routes
 app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
-
-app.use((error, req, res, next) => {
-  console.error('SERVER ERROR: ', error);
-  if (res.statusCode < 400) {
-      res.status(500);
-  }
-  res.send({
-    error: error.message,
-    name: error.name,
-    message: error.message,
-    table: error.table,
-  });
-})
 
 ViteExpress.listen(app, 3000, () =>
   console.log("Server is listening on port 3000...")
